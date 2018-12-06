@@ -24,6 +24,9 @@ def help_command(text, chan, conn, bot, notice, message, has_permission, trigger
         searching_for = None
 
     if searching_for:
+        for potential_match, plugin in bot.plugin_manager.commands.items():
+            if potential_match.startswith(searching_for):
+                searching_for = potential_match
         if searching_for in bot.plugin_manager.commands:
             doc = bot.plugin_manager.commands[searching_for].doc
             if doc:
